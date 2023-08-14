@@ -1,0 +1,28 @@
+---
+title: Toolik Chlorophyll Concentration
+author: "Heather"
+format: "html"
+execute:
+  echo: TRUE
+  warning: FALSE
+  ---
+  
+```{r}
+library(here)
+library(janitor)
+library(tidyverse)
+
+```
+  
+```{r}
+Chlorophyll_data <- read_csv(here::here("data", "toolik_chlorophyll.csv"), na = ".") %>% 
+  janitor::clean_names() %>% 
+  rename(chl_a = active_chl_a_ug_l)
+view(Chlorophyll_data)
+```
+```{r}
+ggplot(data = Chlorophyll_data, aes(x = chl_a))+
+  geom_histogram(color="black", fill = "green")
+```
+  
+  
